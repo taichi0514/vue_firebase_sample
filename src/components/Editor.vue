@@ -24,53 +24,54 @@
 
 <script>
   import marked from "marked";
-    export default {
-        name: "editor",
-      props: ["user"],
-      data(){
-        return {
-          memos: [
-            {markdown: ""}
-          ],
-          selectedIndex: 0
-        };
+
+  export default {
+    name: "editor",
+    props: ["user"],
+    data() {
+      return {
+        memos: [
+          {markdown: ""}
+        ],
+        selectedIndex: 0
+      };
+    },
+    methods: {
+      logout: function () {
+        firebase.auth().signOut();
       },
-      methods: {
-        logout: function () {
-          firebase.auth().signOut();
-        },
-        preview: function () {
-          return marked(this.memos[this.selectedIndex].markdown);
-        },
-        addMemo: function () {
-          this.memos.push({
-            markdown: "無題メモ"
-          });
-        },
-        selectMemo: function (index) {
-          this.selectedIndex = index;
-        },
-        displayTitle: function (text) {
-          return text.split(/\n/)[0]
-        },
-        deleteMemo: function(){
-          this.memos.splice(this.selectedIndex,1);
-          if(this.selectedIndex > 0){
-            this.selectedIndex--;
-          }
-        },
-        saveMemo: function () {
-          firebase.database().ref("memos/" + this.user.uid).set(this.memos);
-        },
+      preview: function () {
+        return marked(this.memos[this.selectedIndex].markdown);
       },
-      created: function () {
-        firebase.database().ref("memos/" + this.user.uid).once("value").then(result=>{
-          if (result.val()){
-            this.memos = result.val();
-          }
-        })
-      }
+      addMemo: function () {
+        this.memos.push({
+          markdown: "無題メモ"
+        });
+      },
+      selectMemo: function (index) {
+        this.selectedIndex = index;
+      },
+      displayTitle: function (text) {
+        return text.split(/\n/)[0]
+      },
+      deleteMemo: function () {
+        this.memos.splice(this.selectedIndex, 1);
+        if (this.selectedIndex > 0) {
+          this.selectedIndex--;
+        }
+      },
+      saveMemo: function () {
+        firebase.database().ref("memos/" + this.user.uid).set(this.memos);
+      },
+    },
+    created: function () {
+      firebase.database().ref("memos/" + this.user.uid).once("value").then(result => {
+        if (result.val()) {
+          this.memos = result.val();
+        }
+      })
     }
+  }
 </script>
 
 <style scoped>
@@ -88,7 +89,11 @@
   .preview {
     width: 40%;
     text-align: left;
-    padding: 10px;
+    padding: 0 10px;
+  }
+
+  .preview *  :first-child{
+    margin-top:0;
   }
 
   *:before, *:after {
@@ -132,7 +137,7 @@
     height: 500px;
   }
 
-  .deleteMemo{
+  .deleteMemo {
     margin: 10px;
   }
 </style>
