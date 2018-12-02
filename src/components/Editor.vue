@@ -2,6 +2,7 @@
   <div id="editor">
     <h1>エディター画面</h1>
     <h2>{{ user.displayName }}さん</h2>
+    <p>色々書いていってな！</p>
     <button @click="logout">logout</button>
     <div class="editorWrapper">
       <div class="memoListWrapper">

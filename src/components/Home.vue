@@ -11,7 +11,7 @@
         name: "home",
       data(){
           return{
-            msg:'yoissyo'
+            msg:'はよログインせぃ！'
           }
       },
       methods:{
