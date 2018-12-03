@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-      <Home v-if="!isLogin"/>
-      <Editor v-if="isLogin" :user="userData"/>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -10,27 +9,6 @@
 import Editor from "./components/Editor";
 export default {
   name: 'app',
-  components: {
-    Home:Home,
-    Editor:Editor
-  },
-  data () {
-    return {
-      isLogin: false,
-      userData: null
-    };
-  },
-  created: function(){
-    firebase.auth().onAuthStateChanged(user =>{
-      if(user){
-        this.isLogin = true;
-        this.userData = user;
-      }else{
-        this.isLogin = false;
-        this.userData = null;
-      };
-    });
-  }
 }
 </script>
 
