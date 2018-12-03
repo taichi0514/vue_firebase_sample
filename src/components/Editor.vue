@@ -12,9 +12,11 @@
             {{displayTitle(memo.markdown)}}
           </p>
         </div>
-        <button class="addMemo" @click="addMemo">memo add</button>
-        <button class="deleteMemo" v-if="memos.length > 1" @click="deleteMemo">選択中のメモ削除</button>
-        <button class="saveMemo" @click="saveMemo">メモの保存</button>
+        <div class="buttonWrapper">
+          <button class="addMemo" @click="addMemo">memo add</button>
+          <button class="deleteMemo" v-if="memos.length > 1" @click="deleteMemo">選択中のメモ削除</button>
+          <button class="saveMemo" @click="saveMemo">メモの保存</button>
+        </div>
       </div>
       <textarea class="markdown" v-model="memos[selectedIndex].markdown"></textarea>
       <div class="preview markdown-body" v-html="preview()"></div>
@@ -148,7 +150,4 @@
     height: 500px;
   }
 
-  .deleteMemo {
-    margin: 10px;
-  }
 </style>
