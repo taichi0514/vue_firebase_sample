@@ -1,9 +1,11 @@
 <template>
   <div id="editor">
-    <h1>エディター画面</h1>
-    <h2>{{ user.displayName }}さん</h2>
-    <p>色々書いていってな！</p>
-    <button @click="logout">logout</button>
+    <section>
+      <h1>エディター画面</h1>
+      <h2>{{ user.displayName }}さん</h2>
+      <p>色々書いていってな！</p>
+      <button @click="logout">logout</button>
+    </section>
     <div class="editorWrapper">
       <div class="memoListWrapper">
         <div class="memoList" v-for="(memo,index) in memos" :key="index" @click="selectMemo(index)"
@@ -88,6 +90,11 @@
 </script>
 
 <style scoped>
+
+  section {
+    padding: 0 20px;
+  }
+
   .editorWrapper {
     display: flex;
     padding: 20px;
@@ -117,6 +124,7 @@
   .memoListWrapper {
     width: 20%;
     border-top: 1px solid #000;
+    margin-right: 10px;
   }
 
   .memoList {
