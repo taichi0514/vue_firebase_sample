@@ -17,7 +17,7 @@
         <button class="saveMemo" @click="saveMemo">メモの保存</button>
       </div>
       <textarea class="markdown" v-model="memos[selectedIndex].markdown"></textarea>
-      <div class="preview" v-html="preview()"></div>
+      <div class="preview markdown-body" v-html="preview()"></div>
     </div>
   </div>
 </template>
